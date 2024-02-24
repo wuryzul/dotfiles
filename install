@@ -1,18 +1,18 @@
 #!/usr/bin/env zsh
 
+ln -sv ~/.dotfiles/git/gitconfig ~/.gitconfig
+
 ln -sv ~/.dotfiles/zsh/zsh_aliases ~/.zsh_aliases
 ln -sv ~/.dotfiles/zsh/zsh_funcs ~/.zsh_funcs
 ln -sv ~/.dotfiles/zsh/zsh_variables ~/.zsh_variables
 ln -sv ~/.dotfiles/zsh/zshrc ~/.zshrc
-
-ln -sv ~/.dotfiles/git/gitconfig ~/.gitconfig
 
 mkdir -p ~/.ssh
 ln -sv ~/.dotfiles/ssh/config ~/.ssh/config
 ln -sv ~/.dotfiles/ssh/config.local ~/.ssh/config.local
 
 if [ ! -d ~/.config/nixpkgs ]; then
-  ln -sv ~/.dotfiles/config/nixpkgs ~/.config/nixpkgs
+  ln -sv ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 fi
 
 if [ ! -d ~/.ssh/config.d ]; then
@@ -23,3 +23,10 @@ if [ ! -d ~/.ssh/config.local.d ]; then
   ln -sv ~/.dotfiles/ssh/config.local.d ~/.ssh/config.local.d
 fi
 
+if [ ! -d ~/.config/nvim ]; then
+  ln -sv ~/.dotfiles/nvim ~/.config/nvim
+fi
+
+if [ ! -d ~/.config/tmux ]; then
+  ln -sv ~/.dotfiles/tmux ~/.config/tmux
+fi
