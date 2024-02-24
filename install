@@ -2,9 +2,9 @@
 
 stow fish
 stow git
-stow nixpkgs
 stow nvim
 stow ssh
 stow starship
 stow tmux
 stow zsh
+
