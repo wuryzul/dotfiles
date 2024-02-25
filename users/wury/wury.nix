@@ -18,19 +18,21 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [ 
+    direnv
     fd
-    git
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    ripgrep
-    tmux
-    wget
     fish
     fishPlugins.done
     fishPlugins.grc
     fishPlugins.tide
     fishPlugins.z
     fishPlugins.forgit
+    git
     grc
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    ranger
+    ripgrep
+    tmux
+    wget
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -80,6 +82,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     SUDO_EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   programs.fish = {

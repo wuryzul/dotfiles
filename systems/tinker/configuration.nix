@@ -18,7 +18,11 @@
       options = "--delete-older-than 7d";
     };
     package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs          = true
+      keep-derivations      = true
+    '';
   };
 
   system.autoUpgrade = {
@@ -100,24 +104,27 @@
   users.users.wury = {
     isNormalUser = true;
     shell = pkgs.bash;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "docker" "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
   users.defaultUserShell = pkgs.bash;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-   fd
-   fish
-   git
-   neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   ripgrep
-   starship
-   stow
-   tmux
-   wget
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      docker
+      fish
+      git
+      neovim
+      wget
+    ];
+    variables = {
+      EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+  };
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -146,6 +153,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
