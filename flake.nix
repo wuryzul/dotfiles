@@ -49,6 +49,20 @@
           }
         ];
       };
+      work = nixpks.lib.nixoSystem {
+        system = "x86_64-linux";
+        modules = [
+          systems/defaults.nix
+          systems/users.nix
+          systems/wsl.nix
+          systems/work
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.wury = import users/wury/wury.nix;
+          }
+        ];
+      }
     };
   };
 }
