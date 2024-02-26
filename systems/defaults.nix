@@ -13,6 +13,7 @@
       keep-derivations      = true
     '';
   };
+  nixpkgs.config.allowUnfree = true;
 
   system.autoUpgrade = {
     enable = true;
