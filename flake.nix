@@ -12,7 +12,9 @@
       tinker = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          systems/tinker/configuration.nix
+          systems/defaults.nix
+          systems/users.nix
+          systems/tinker
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
