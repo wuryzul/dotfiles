@@ -22,6 +22,20 @@
           }
         ];
       };
+      waterfall = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          systems/defaults.nix
+          systems/users.nix
+          systems/wsl.nix
+          systems/waterfall
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.wury = import users/wury/wury.nix;
+          }
+        ];
+      };
     };
   };
 }
