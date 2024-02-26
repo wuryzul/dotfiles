@@ -25,7 +25,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      docker
       fish
       git
       neovim
@@ -55,7 +54,6 @@
   };
 
   services.openssh.enable = true;
-  virtualisation.docker.enable = true;
 
   networking.firewall.enable = false;
 

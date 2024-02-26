@@ -22,11 +22,25 @@
           }
         ];
       };
+      ns01 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          systems/defaults.nix
+          systems/users.nix
+          systems/ns01
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.wury = import users/wury/wury.nix;
+          }
+        ];
+      };
       tinker = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           systems/defaults.nix
           systems/users.nix
+          systems/docker.nix
           systems/tinker
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;

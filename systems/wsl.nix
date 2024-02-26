@@ -1,4 +1,4 @@
-{ config, libs, pkgs ... }: {
+{ config, libs, pkgs, ... }: {
   imports = [ <nixos-wsl/modules> ];
 
   wsl.enable = true;
